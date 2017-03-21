@@ -1,0 +1,56 @@
+use('../../../nemo/node_modules/stylobuild', {
+	autoprefixer: { browsers: "last 2 version, Explorer >=8"},
+	csso: true,
+	pixrem: false
+});
+
+@import 'normalize.css';
+
+@import "vars.styl";
+
+/* COMMONS */
+@import "common/main.styl";
+@import "common/done-layout.styl";
+@import "common/done-wrapper.styl";
+@import "common/done-border.styl";
+@import "common/done-tags.styl";
+@import "common/done-button.styl";
+@import "common/done-keyframes.styl";
+@import "common/done-navigation.styl";
+@import "common/done-tutorial.styl";
+@import "common/done-action.styl";
+@import "common/done-deadline.styl";
+@import "common/done-filters.styl";
+@import "common/done-header.styl";
+@import "common/done-link.styl";
+@import "common/done-loading.styl";
+@import "common/done-login.styl";
+@import "common/done-new.styl";
+@import "common/done-popup.styl";
+@import "common/done-priorities.styl";
+@import "common/done-ticket.styl";
+@import "common/done-time.styl";
+@import "common/done-user.styl";
+/* !COMMONS */
+
+/* BLOCKS */
+@import "blocks/done-block.styl";
+@import "blocks/done-form.styl";
+@import "blocks/done-navi.styl";
+@import "blocks/done-task.styl";
+@import "blocks/done-mainTask.styl";
+@import "blocks/done-fastTask.styl";
+@import "blocks/done-controls.styl";
+@import "blocks/done-comments.styl";
+@import "blocks/done-greetings.styl";
+@import "blocks/done-statistic.styl";
+@import "blocks/done-screenshots.styl";
+/* !BLOCKS */
+
+/* UI */
+@import "ui-kit/_ui.styl";
+/* !UI */
+
+/*style for ie 11*/
+@import "ie-must-die.styl";
+

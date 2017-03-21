@@ -1,0 +1,51 @@
+.done-header {
+	position: relative;
+	margin: 20px auto 10px;
+	min-width: 320px;
+	max-width: 1600px;
+	padding: 0 80px;
+	font-weight: 100;
+	min-height: 40px;
+	line-height: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 200%;
+	font-family: 'Lora', serif;
+
+	&__inside {
+		padding: 0;
+		margin-top: 40px;
+		margin-bottom: 20px;
+		display: block;
+		font-size: 150%;
+		font-weight: 100;
+		color: #ffffff;
+	}
+	&>small{
+		flex-basis: 100%;
+		font-size: 8px;
+		font-weight: 200 !important;
+		font-style: italic;
+		color: #ccc;
+	}
+	&>* {
+		align-self: center;
+		color: #fff;
+	}
+	&__logo {
+		background-image: url(http://mjolnir.com.ua/svg/mjolnir2.svg);
+		background-position: center center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 40px;
+		height: 40px;
+		margin-right: 20px;
+	}
+}
+
+@media (max-width: 980px) {
+	.done-header {
+		padding: 10px;
+		max-width: 100%;
+	}
+}
