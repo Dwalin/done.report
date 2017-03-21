@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Charset -->
+    <meta charset="utf-8">
+
+    <!-- Meta Information -->
+    <title>DONE.it</title>
+
+    <meta name="author" content="Mjolnir LLC" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- !Meta Information -->
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:700|Rubik&amp;subset=cyrillic" rel="stylesheet">
+    <!-- !Fonts -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/js/jqueryui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/js/timepicker/jquery.timepicker.css">
+    <!-- !Stylesheets -->
+
+    <script type='text/javascript' src="/js/jquery.min.js"></script>
+    <script type='text/javascript' src='/js/knockout-3.4.0.js'></script>
+
+    <script type='text/javascript' src='/js/task.js'></script>
+    <script type='text/javascript' src='/js/timepicker/jquery.timepicker.min.js'></script>
+
+    <script src="/js/jqueryui/jquery-ui.min.js"></script>
+
+
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="../js/popup/magnific-popup.css">
+
+    <!-- Magnific Popup core JS file -->
+    <script src="../js/popup/jquery.magnific-popup.min.js"></script>
+
+
+</head>
+
+<body>
+
+<!--<button data-bind="click: sortTasksByCreation">Сортировать</button>-->
+
+<div class="done-border">
+
+    <header class="done-header">
+        Mjolnir report
+    </header>
+
+    <!-- ko if: loggedIn -->
+
+    <div class="done-greetings">
+        Hello, <span data-bind="text: currentUser"></span>
+        <a href="http://done.mjolnir.com.ua/api/users/logout" class="done-link">Log out</a>
+    </div>
+
+    <!-- /ko -->
+
+    <div class="done-wrapper">
+
+        <!-- ko ifnot: loggedIn -->
+
+        <form class="done-login" data-bind="submit: login">
+            <span>Log in, mr. %username%</span>
+            <input data-bind="value: loginForm.login" type="text" name="login">
+            <input data-bind="value: loginForm.password" type="password" name="password">
+            <button class="done-button">Log in</button>
+        </form>
+
+
+        <!-- /ko -->
+
+        <!-- ko if: loggedIn -->
+
+        <section class="done-block">
+
+            <!-- ko if: loading -->
+            <span>Loading…</span>
+            <!-- /ko -->
+
+            <!-- ko ifnot: loading -->
+
+
+
+            <!-- ko foreach: tasksReport -->
+
+            <div class="done-statistic">
+
+                <div class="done-statistic__date" data-bind="text: date"></div>
+
+                <div class="done-statistic__container">
+
+                    <!-- ko foreach: $root.users -->
+                    <!-- ko if: permissions > 20 -->
+                    <div class="done-statistic__block">
+
+                        <div class="done-statistic__user" data-bind="text: name"></div>
+
+                        <!-- ko if: $parent.timeSummary().summaryHumanized[name] -->
+                        <div class="done-statistic__summary" data-bind="text: $parent.timeSummary().summaryHumanized[name]"></div>
+
+
+                        <div class="done-statistic__summary__line" data-bind="style: { width: $parent.timeSummary().summary[name]/480*300 + 'px' }">
+                            <div class="done-statistic__summary__line__inside">
+
+                            </div>
+                        </div>
+
+                        <!-- /ko -->
+
+                        <!-- ko foreach: $parent.tasks -->
+
+                        <!-- ko if: ($parent.name == users().assignee) -->
+
+                        <div class="done-statistic__item">
+
+                            <span class="done-statistic__item__time" data-bind="text: spent_human()"></span>
+                            <span class="done-statistic__item__ticket" data-bind="text: ticket() ? ticket() : 'no ticket' "></span>
+                            <span class="done-statistic__item__task" data-bind="text: task()"></span>
+                            <span class="done-statistic__item__task" data-bind="text: description()"></span>
+
+                        </div>
+
+                        <!-- /ko -->
+
+                        <!-- /ko -->
+
+                    </div>
+                    <!-- /ko -->
+                    <!-- /ko -->
+
+                </div>
+
+            </div>
+
+            <!-- /ko -->
+
+
+            <!-- ko if: currentStateId() != 5 -->
+
+                    <span data-bind="visible: (tasks() == '')">
+                        Задач не найдено
+                    </span>
+
+            <!-- /ko -->
+
+            <!-- /ko -->
+
+        </section>
+
+        <!-- /ko -->
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

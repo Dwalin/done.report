@@ -1,0 +1,48 @@
+.done-button {
+	display: inline-block;
+	box-sizing: content-box;
+	border-radius: 2px;
+	border: 4px solid transparent;
+	padding: 0 20px;
+	background:
+	linear-gradient(rgba(250, 250, 250, 1), rgba(255, 255, 255, 1)) padding-box,
+	linear-gradient(rgba(255, 255, 255, 1), rgba(250, 250, 250, 1)) border-box,
+	$c-main-blue border-box;
+	box-shadow:
+	0 8px 16px -10px alpha(darken($c-main-blue, 20), .4),
+	inset 0 2px 4px rgba(40, 40, 40, .05);
+	margin-bottom: 20px;
+	font-size: 120%;
+	height: 40px;
+	line-height: 40px;
+	text-decoration: none;
+	color: alpha($c-main-text, .75);
+	text-align: center;
+	outline: none;
+	transition: all .1s ease-in-out;
+	&:hover {
+		box-shadow:
+		0 12px 20px -8px alpha(darken($c-main-blue, 20), .25),
+		inset 0 2px 4px rgba(40, 40, 40, .05);
+	}
+	&_inline {
+		margin-right: 20px;
+	}
+	&._small {
+		background: $c-main-blue;
+		height: 35px;
+		line-height: 35px;
+		color: #fff;
+
+		* {
+			color: #fff;
+		}
+	}
+	&._tag {
+		background: $c-main-blue;
+		height: 30px;
+		line-height: 30px;
+		color: #fff;
+		padding: 0 10px;
+	}
+}

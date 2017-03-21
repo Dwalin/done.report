@@ -1,0 +1,46 @@
+#<IfModule mod_rewrite.c>
+#    RewriteEngine on
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteRule  ^$ app/    [L]
+#    RewriteRule  ((?s).*) app/$1 [L]
+#</IfModule>
+
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    RewriteCond %{REQUEST_URI} api/(.*)$
+    RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule  ((?s).*) app/$1 [L]
+
+	RewriteCond %{REQUEST_URI} task/([0123456789]*)/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ task/index.html [L]
+
+	RewriteCond %{REQUEST_URI} report/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ task/index.html [L]
+
+	RewriteCond %{REQUEST_URI} state/([0123456789]*)/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ index.html [L]
+
+	RewriteCond %{REQUEST_URI} state/([0123456789]*)/tag/([0123456789]*)/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ index.html [L]
+
+	RewriteCond %{REQUEST_URI} user/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ index.html [L]
+
+	RewriteCond %{REQUEST_URI} form/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ form/compactForm.html [L]
+
+	RewriteCond %{REQUEST_URI} form-utair/$
+	RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|gif|png|css|zip|doc|php|js|pdf|txt|ico|djvu)$
+	RewriteRule ^(.*)$ form-utair/compactForm.html [L]
+
+</IfModule>

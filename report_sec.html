@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Charset -->
+    <meta charset="utf-8">
+
+    <!-- Meta Information -->
+    <title>DONE.it</title>
+
+    <meta name="author" content="Mjolnir LLC" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- !Meta Information -->
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:700|Rubik&amp;subset=cyrillic" rel="stylesheet">
+    <!-- !Fonts -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- !Stylesheets -->
+
+    <script type='text/javascript' src="/js/jquery.min.js"></script>
+    <!--<script type='text/javascript' src='/js/knockout-3.4.0.js'></script>-->
+
+
+    <script src="/js/d3.v4.min.js"></script>
+    <script src="/js/report_sec.js"></script>
+
+    <style>
+
+		body {
+			font-size: 14px;
+			line-height: 20px;
+		}
+
+		body * {
+			box-sizing: border-box;
+		}
+
+
+        .task-widget {
+            outline: 1px solid rgba(0, 0, 0, .1);
+            margin: 50px 40px;
+
+            min-height: 800px;
+
+			padding: 40px;
+        }
+
+		.task-report__project {
+			margin-bottom: 40px;
+		}
+
+		.task-report__projectName {
+			font-size: 120%;
+			margin-bottom: 20px;
+		}
+
+		.task-report__task {
+			margin-bottom: 20px;
+		}
+
+		.task-report__task:last-child {
+			margin-bottom: 0;
+		}
+
+		.task-report__day {
+			margin-bottom: 20px;
+			padding: 40px 40px;
+			border: 1px solid rgba(220, 220, 220, 1);
+			border-radius: 4px;
+		}
+
+		.task-report__time {
+			margin-bottom: 5px;
+		}
+
+		.task-report__date {
+			font-size: 120%;
+			font-weight: 400;
+			margin-bottom: 20px;
+			color: rgba(20, 20, 140, 1);
+		}
+
+		.task-report__description {
+			font-size: 90%;
+			opacity: .75;
+		}
+
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="done-border">
+
+	<article class="task-widget _text">
+
+	</article>
+
+    <article class="task-widget _projects">
+
+    </article>
+
+</div>
+
+</body>
+
+</html>

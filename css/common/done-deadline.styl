@@ -1,0 +1,25 @@
+.done-deadline {
+	@extend .done-button;
+	@extend .done-button._small;
+	display: block;
+	padding: 0;
+	margin-bottom: 10px;
+
+	&__popup {
+		padding: 100px;
+
+		&__title {
+			display: block;
+			color: #ffffff;
+			font-size: 180%;
+			margin-bottom: 20px;
+		}
+		input, select {
+			width: 300px;
+			margin: 0;
+			margin-right: 20px;
+			border: none;
+			vertical-align: top;
+		}
+	}
+}

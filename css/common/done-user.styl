@@ -1,0 +1,53 @@
+.done-user {
+	position: relative;
+	display: block;
+	line-height: 20px;
+	height: 20px;
+	color: $c-main-text;
+	border-radius: 4px;
+	opacity: 1;
+	transition: opacity .1s ease-in-out;
+	z-index: 1000;
+
+	&__additional {
+		opacity: .5;
+	}
+	&__creator {
+		opacity: .5;
+		font-weight: 200;
+	}
+	&__assignee {
+		font-size: 160%;
+	}
+	&__at {
+		background-color: rgba(255, 204, 102, 1);
+		color: black;
+	}
+	&__ec {
+		background-color: rgba(46, 184, 46, 1);
+		color: white;
+	}
+	&__list {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		padding: 10px;
+		box-shadow: 0 2px 4px rgba(80, 80, 80, .2);
+		background-color: white;
+		z-index: 1000;
+		list-style: none;
+		display: none;
+
+		li {
+			margin: 5px;
+		}
+	}
+	&:hover {
+		opacity: 1;
+		cursor: pointer;
+
+		.done-user__list {
+			display: block;
+		}
+	}
+}

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Charset -->
+    <meta charset="utf-8">
+
+    <!-- Meta Information -->
+    <title>DONE.it</title>
+
+    <meta name="author" content="Mjolnir LLC" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- !Meta Information -->
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:700|Rubik&amp;subset=cyrillic" rel="stylesheet">
+    <!-- !Fonts -->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./js/jqueryui/jquery-ui.min.css">
+    <link rel="stylesheet" href="./js/timepicker/jquery.timepicker.css">
+    <!-- !Stylesheets -->
+
+    <script type='text/javascript' src="./js/jquery.min.js"></script>
+    <script type='text/javascript' src='./js/knockout-3.4.0.js'></script>
+
+    <script type='text/javascript' src='./js/task.2.0.js'></script>
+
+    <script type='text/javascript' src='./js/timepicker/jquery.timepicker.min.js'></script>
+
+    <script src="./js/jqueryui/jquery-ui.min.js"></script>
+
+
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="./js/popup/magnific-popup.css">
+
+    <!-- Magnific Popup core JS file -->
+    <script src="./js/popup/jquery.magnific-popup.min.js"></script>
+
+
+
+</head>
+
+<body>
+<!--trump make Mjolmir great again-->
+<!--<button data-bind="click: sortTasksByCreation">Сортировать</button>-->
+
+<div class="done-border">
+
+    <header class="done-header">
+        <div class="done-header__logo"></div>
+        <div>done.report</div>
+	    <small>Thanks, Obama!</small>
+    </header>
+
+    <!-- ko if: loggedIn -->
+
+    <div class="done-greetings">
+        Hello, <span data-bind="text: currentUser"></span>
+        <a href="#"  data-bind="click: logOut" class="done-link">Log out</a>
+    </div>
+
+    <!-- /ko -->
+
+    <div class="done-wrapper">
+
+        <!-- ko ifnot: loggedIn -->
+
+        <form class="done-login" data-bind="submit: login">
+            <span>Log in, mr. %username%</span>
+            <input data-bind="value: loginForm.login" type="text" name="login">
+            <input data-bind="value: loginForm.password" type="password" name="password">
+            <button class="done-button">Log in</button>
+        </form>
+
+
+        <!-- /ko -->
+
+        <!-- ko if: loggedIn -->
+
+            <!-- ko if: state == "user" -->
+
+                <h2 class="done-header__inside">
+                    Profile
+                </h2>
+
+                <div class="done-controls">
+
+                    <h2 class="done-header__inside">
+                        User data
+                    </h2>
+
+                    <form data-bind="submit: update" class="done-task done-task_form">
+
+                        <div class="done-task__line">
+
+                            <div class="done-task__field">
+                                <span class="done-task__field__annotation">
+                                    Login
+                                </span>
+
+                                <input data-bind="value: user" href="#"></p>
+
+                            </div>
+
+                            <div class="done-task__field">
+                                <span class="done-task__field__annotation">
+                                    Username
+                                </span>
+
+                                <input data-bind="value: name" href="#"></p>
+
+                            </div>
+
+                            <div class="done-task__field">
+                                <span class="done-task__field__annotation">
+                                    email
+                                </span>
+
+                                <input data-bind="value: email" href="#"></p>
+
+                            </div>
+
+                            <div class="done-task__field">
+                                <span class="done-task__field__annotation">
+                                    Password
+                                </span>
+
+                                <input data-bind="value: password" href="#"></p>
+
+                            </div>
+
+                            <div class="done-task__field">
+                                <span class="done-task__field__annotation">
+                                    Color
+                                </span>
+
+                                <input data-bind="value: color" href="#"></p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="done-task__line">
+                            <div class="done-task__field done-task__field_right">
+                                <button class="done-button">Save</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            <!-- /ko -->
+
+
+            <!-- ko if: state == "tasks" -->
+
+	    <div class="done-fastTask">
+
+		    <h2 class="done-header__inside">
+			    Fast time tracking system
+		    </h2>
+
+
+
+		    <form data-bind="submit: createNewFastTask" class="done-task done-task_form js-form">
+
+
+			    <input type="hidden" data-bind="value: currentUser">
+
+			    <div class="done-task__field">
+                            <span class="done-hide done-task__field__annotation">
+                                                        What was done
+                                                </span>
+				    <input data-bind="value: newFastTask.task" placeholder="What was done" type="text" name="task">
+			    </div>
+
+			    <div class="done-hide done-task__field">
+                            <span class="done-hide done-task__field__annotation">
+                                                        Ticket
+                                                </span>
+				    <input placeholder="Ticket" data-bind="value: newFastTask.ticket" type="text" name="ticket">
+			    </div>
+
+			    <div class="done-task__field">
+                            <span class="done-hide done-task__field__annotation">
+                                                        Time
+                                                </span>
+				    <input placeholder="Time" data-bind="value: newFastTask.time" type="text" name="time">
+			    </div>
+
+			    <div class="done-task__field done-task__field_right">
+				    <button class="done-button">Go</button>
+			    </div>
+		    </form>
+	    </div>
+
+		<h2 class="done-header__inside">
+			High level overview
+		</h2>
+
+        <section class="done-block">
+
+            <!-- ko if: currentStateId() == 10 -->
+            <div class="done-filters">
+
+                <div class="done-filters__item">
+                    <!--<label>Начиная с</label>-->
+                    <input placeholder="Staring from" data-bind="datepickerToday, value: dates.from, event: { change: refresh }">
+                </div>
+
+                <div class="done-filters__item">
+                    <!--<label>И до</label>-->
+                    <input placeholder="To" data-bind="datepickerToday, value: dates.to, event: { change: refresh }">
+                </div>
+
+            </div>
+            <!-- /ko -->
+
+            <!-- ko if: loading -->
+            <div class="done-loading">
+
+            </div>
+
+            <!-- /ko -->
+
+            <!-- ko ifnot: loading -->
+            <span class="done-block__not__find" data-bind="visible: (tasks() == '')">
+                        No tasks found
+                    </span>
+            <!-- /ko -->
+
+            <div class="done-task done-mainTask">
+
+		        <h2 class="done-task__title">
+			        <span class="done-task__name">New task</span>
+		        </h2>
+
+		        <form data-bind="submit: createNewTask" class="done-task__form">
+
+			        <div class="done-task__field done-task__field_createTask">
+                        <span class="done-user done-user__creator done-hide">
+                            <span data-bind="" class="name">Responsible</span>
+                        </span>
+
+                        <span class="done-user done-user__assignee done-task__field__users">
+                            <select class="done-task__field__input done-task__field__input_user js-user-select" data-bind="value: newTask.assignee" name="assignee">
+                                <option value="" selected disabled data-bind="text: 'Responsible'"></option>
+                                <!-- ko foreach: users -->
+                                <option data-bind="text: name, value: id"></option>
+                                <!-- /ko -->
+                            </select>
+                        </span>
+
+				        <div class="done-task__bottom">
+					        <!-- task -->
+					        <div class="done-task__field__task">
+	                                                        <span class="done-task__field__annotation done-hide">
+	                                                                TODO
+	                                                        </span>
+						        <input class="done-task__field__input done-task__field__input_task" data-bind="value: newTask.task" type="text" name="task" placeholder='TODO'>
+					        </div>
+					        <!-- !task -->
+
+
+					        <div class=" done-task__field_right">
+						        <button class="done-button">Create task</button>
+					        </div>
+				        </div>
+
+			        </div>
+
+
+
+
+
+
+			        <!-- ticket -->
+			        <div class="done-hide done-task__field done-task__field__ticket">
+                                                        <span class="done-task__field__annotation">
+                                                                Ticket
+                                                        </span>
+
+
+				        <input data-bind="value: newTask.ticket" type="text" name="ticket">
+			        </div>
+			        <!-- !ticket -->
+
+
+			        <!-- deadline -->
+			        <div class="done-hide done-task__field done-task__field__deadline">
+                                                        <span class="done-task__field__annotation">
+                                                            Deadline
+                                                        </span>
+
+				        <input data-bind="value: newTask.deadline, datepicker" type="text" name="deadline">
+			        </div>
+			        <!-- !deadline -->
+
+
+			        <!-- Description -->
+
+			        <div class="done-hide done-task__field done-task__field__description" style="display: none;">
+                                                    <span class="done-task__field__annotation">
+                                                        Description
+                                                    </span>
+				        <textarea class="done-new__description" data-bind="value: newTask.description" type="text" name="description"></textarea>
+			        </div>
+
+			        <!-- !Description -->
+
+
+		        </form>
+            </div>
+
+
+
+
+            <!-- ko foreach: tasks -->
+
+            <article class="done-task"
+                         data-bind="
+                         visible: ($root.filter.assignee() == '') || ($root.filter.assignee() == users().assignee),
+                         css: {'done-task__loading': loading, 'done-task_runtime': marker() == 'Runtime'}"
+                        >
+
+
+
+
+                    <!--<div class="done-task__modified" data-bind="text: 'Запись обновлена ' + new Date(modified()).toLocaleString();"></div>-->
+
+                    <div class="done-task__delete" data-bind="click: function(){ $root.deleteTask(this) }"></div>
+
+					<div class="done-task__line _hide">
+
+						<!-- deadline -->
+						<div class="done-task__field _hide">
+								<span class="done-task__field__annotation">
+									Deadline
+								</span>
+
+							<div class="done-deadline" >
+								<a data-bind="attr: {href: '#js-popup__deadline_' + id}, popup" class="done-button_inline js-popup__open">
+									<span class="js-deadline" data-bind="text: deadline, visible: deadline(), deadline"></span>
+									<span data-bind="visible: !deadline()">Set deadline</span>
+								</a>
+							</div>
+
+							<div data-bind="attr: {id: 'js-popup__deadline_' + id}" class="js-popup js-popup__fast mfp-hide done-popup done-deadline__popup">
+								<span data-bind="visible: deadline()" class="done-deadline__popup__title">— Что, не успеваем?</span>
+								<span data-bind="visible: !deadline()" class="done-deadline__popup__title">— Почему сроки не проставляем?</span>
+
+								<!--<div data-bind="click: function(data, event) {$parents[1].deleteTag(name, $parent.id, data, event)}"-->
+
+								<form data-bind="submit: function(){ updateTask('deadline') }">
+									<input data-bind="value: update().deadline, datepicker, attr:{placeholder: 'Новая дата вместо ' + deadline()}" class="done-time__input" type="text" name="deadline" id="datepicker">
+									<button data-bind="visible: deadline()" class="done-button">Ну теперь точно успеем</button>
+									<button data-bind="visible: !deadline()" class="done-button">Это не я, это тимлид!</button>
+								</form>
+
+							</div>
+						</div>
+						<!-- !deadline -->
+
+					</div>
+
+					<div class="done-task__line _hide">
+
+						<!--<div class="done-task__field done-task__field__marker" data-bind="text: marker, visible: marker"></div>-->
+
+
+						<!-- priority -->
+
+						<div class="done-task__field done-task__field__priority">
+                            <span class="done-task__field__annotation">
+
+                                <a data-bind="attr: {href: '#js-popup__priority_' + id}, popup" class="done-button_inline js-popup__open done-link done-link_white">
+									Priority
+								</a>
+                            </span>
+
+							<p data-bind="text: priority" href="#"></p>
+
+							<div data-bind="attr: {id: 'js-popup__priority_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
+								<form data-bind="submit: function(){ updateTask('priority') }">
+									<input data-bind="value: update().priority" type="text">
+									<button class="done-button">Go</button>
+								</form>
+							</div>
+						</div>
+
+						<!-- !priority -->
+
+					</div>
+
+					<div class="done-task__line _hide" data-bind="visible: marker != 'Runtime' ">
+
+						<!-- Description -->
+
+
+						<div class="done-task__field done-task__field__description">
+                                <span class="done-task__field__annotation">
+
+                                    <a data-bind="attr: {href: '#js-popup__description_' + id}, popup" class="done-button_inline js-popup__open done-link done-link_white">
+										Description
+									</a>
+                                </span>
+							<p data-bind="html: description" href="#"></p>
+						</div>
+
+						<div data-bind="attr: {id: 'js-popup__description_' + id}" class="js-popup js-popup__fast mfp-hide done-popup done-deadline__popup">
+							<span class="done-deadline__popup__title">Description</span>
+
+							<form data-bind="submit: function(){ updateTask('description') }">
+								<textarea data-bind="value: update().description" class="done-desctiption__change" type="text" name="description"></textarea>
+								<button class="done-button">OK</button>
+							</form>
+						</div>
+
+
+						<!-- !Description -->
+
+					</div>
+
+					<div class="done-task__line _hide">
+
+						<div class="done-task__field">
+
+                                    <span class="done-task__field__annotation">
+                                        <a data-bind="attr: {href: '#js-popup__screenshot_' + id}, popup" class="js-popup__open done-link done-link_white">
+											Screenshots
+										</a>
+
+                                        <div data-bind="attr: {id: 'js-popup__screenshot_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
+											<span class="done-deadline__popup__title">Link</span>
+											<form data-bind="submit: function(){ updateTask('screenshot') }">
+												<input data-bind="value: newScreenshot, attr:{placeholder: ''}" class="done-time__input" type="text" name="deadline">
+												<button class="done-button">Go</button>
+											</form>
+										</div>
+                                    </span>
+
+							<div class="done-screenshots">
+								<!-- ko foreach: screenshots -->
+								<div class="done-screenshots__item" >
+									<a data-bind="text: link, attr: {href: link}" target="_blank"></a>
+									<a href="#" data-bind="click: function(){ $parent.deleteProperty('screenshot', id) }" class="done-comments__item__comment">Delete</a>
+								</div>
+								<!-- /ko -->
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="done-task__line _hide">
+						<div class="done-task__field">
+
+                            <span class="done-task__field__annotation">
+                                <a data-bind="attr: {href: '#js-popup__comment_' + id}, popup" class="js-popup__open done-link done-link_white">
+									Comments
+								</a>
+                            </span>
+
+
+							<div class="done-comments" >
+								<!-- ko foreach: comments -->
+								<div class="done-comments__item" data-bind="css: {'done-comments__item_highlight' : highlight}">
+									<span class="done-comments__item__name" data-bind="text: created"></span>
+									<span class="done-comments__item__name" data-bind="text: user"></span>
+									<span class="done-comments__item__comment" data-bind="text: comment"></span>
+									<a class="done-comments__item__delete" href="#" data-bind="click: function(){ $parent.deleteProperty('comment', id) }" class="done-comments__item__comment">Удалить</a>
+								</div>
+								<!-- /ko -->
+							</div>
+
+							<div data-bind="attr: {id: 'js-popup__comment_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
+								<span class="done-deadline__popup__title">Comment</span>
+								<form data-bind="submit: function(){ updateTask('comment') }">
+									<input data-bind="value: newComment, attr:{placeholder: ''}" class="done-time__input" type="text" name="deadline">
+									<button class="done-button">Go</button>
+								</form>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="done-task__line _hide">
+						<div class="done-task__additional">
+
+							<div class="done-task__additional__item _hide">
+
+								<span class="done-task__field__annotation">Project</span>
+
+								<div class="done-tags">
+									<form class="done-tags__form" data-bind="submit: function(){ updateTask('tag') },
+                                        visible: $root.currentStateId() != 5 ">
+
+										<select class="done-tags__input" data-bind="
+                                    options: $root.tags,
+                                    optionsText: 'name',
+                                    value: newTag,
+                                    optionsValue: 'name',
+                                    valueAllowUnset: true,
+                                    optionsCaption: 'Выбрать проект',
+                                    event: { change: update }
+                                    "></select>
+
+										<button class="done-tags__add">+</button>
+									</form>
+
+									<!-- ko foreach: tags -->
+									<div class="done-tags__tag" >
+										<span data-bind="text: name"></span>
+										<div data-bind="click: function(){ $parent.deleteProperty('tag', id) }"
+											 class="done-tags__tag__delete"></div>
+									</div>
+									<!-- /ko -->
+								</div>
+							</div>
+
+							<div class="done-task__additional__item" data-bind="visible: marker != 'Runtime' ">
+								<span class="done-task__field__annotation">Actions</span>
+								<div class="done-actions" >
+									<div data-state="1" class="done-actions__action" data-bind="click: function(){ $root.setState(this, 1) }, visible: $root.currentStateId() > 1">Back to developer</div>
+
+									<div data-state="3" class="done-actions__action" data-bind="click: function(){ $root.setState(this, 3) }, visible: $root.currentStateId() < 3">Send to testing</div>
+									<div data-state="4" class="done-actions__action" data-bind="click: function(){ $root.setState(this, 4) }, visible: $root.currentStateId() < 4">Send to review</div>
+									<div data-state="5" class="done-actions__action" data-bind="click: function(){ $root.setState(this, 5) }, visible: ($root.currentStateId() < 5) && ($root.currentStateId() > 2)">Done</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="done-task__line">
+
+						<!-- task -->
+						<div class="done-task__field done-task__field__task">
+
+							<div class="done-task__field">
+
+								<div class="done-task__name js-popup__open" data-bind="text: task, attr: { href: '#js-popup__task_' + id}, popup"></div>
+
+								<div data-bind="attr: {id: 'js-popup__task_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
+									<form data-bind="submit: function(){ updateTask('task') }">
+										<input data-bind="value: update().task" type="text">
+										<button class="done-button">Go</button>
+									</form>
+								</div>
+
+							</div>
+
+							<div class="done-task__field _user">
+
+								<div class="done-task__creator">
+									<span data-bind="text: 'Task given by ' + users().creator" class="name"></span>
+								</div>
+
+								<div class="done-task__assignee">
+
+									<a data-bind="attr: {href: '#js-popup__assignee_' + id}, popup" class="done-button_inline js-popup__open done-link done-link">
+										<span data-bind="text: users().assignee, visible: users().assignee" class="name"></span>
+										<span data-bind="visible: !users().assignee" class="name">No responsible</span>
+									</a>
+
+									<div data-bind="attr: {id: 'js-popup__assignee_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
+										<form data-bind="submit: function(){ updateTask('assignee') }">
+
+											<select data-bind="value: update().assignee, options: $root.users, optionsText: 'name'" name="assignee">
+
+											</select>
+
+											<button class="done-button">Go</button>
+										</form>
+									</div>
+
+								</div>
+
+
+
+                                <span class="done-user done-user__tester" data-bind="visible: users().tester">
+                                    <span class="done-user__additional">Tester:&nbsp;</span>
+                                    <span data-bind="text: users().tester" class="name"></span>
+                                </span>
+
+							</div>
+
+							<span class="done-task__field _hide">
+
+								<a data-bind="attr: { href: '/task/' + id + '/'}"
+								   target="_blank"
+								   class="done-task__link done-button_inline done-link">
+									Link
+								</a>
+
+							</span>
+
+						</div>
+						<!-- !task -->
+
+					</div>
+
+					<div class="done-task__line">
+
+
+						<!-- time -->
+
+						<div class="done-task__field">
+
+							<div class="done-task__time">
+
+								<div class="done-task__spent">
+									<span class="done-task__spent__label">Time spent</span>
+									<span class="done-task__spent__time" data-bind="text: Math.floor(time__spent()/60) + ' hr ' + Math.floor(time__spent()%60) + ' min'"></span>
+								</div>
+
+								<form class="done-task__time__form" data-bind="submit: function(){ updateTask('time') }, visible: $root.currentStateId() != 5 ">
+
+									<input placeholder="In minutes" class="done-task__time__input _time" data-bind="value: update().time" name="time">
+
+									<input placeholder="Comment" class="done-task__time__input _comment" data-bind="value: update().timeComment" name="time">
+
+									<button class="">Add time</button>
+
+								</form>
+
+							</div>
+
+						</div>
+						<!-- !time -->
+
+					</div>
+
+
+                </article>
+
+            <!-- /ko -->
+
+
+
+
+
+
+
+            </section>
+
+		<!--<div class="done-controls">-->
+
+
+			<!--<div class="done-mainTask">-->
+
+				<!--<h2 class="done-task__title">-->
+					<!--<span class="done-task__name">New task</span>-->
+				<!--</h2>-->
+
+				<!--<form data-bind="submit: createNewTask" class="done-task done-task_form">-->
+
+					<!--<div class="done-task__field done-task__field__users">-->
+                                                            <!--<span class="done-user done-user__creator done-hide">-->
+                                                                <!--<span data-bind="" class="name">Responsible</span>-->
+                                                            <!--</span>-->
+
+                                                            <!--<span class="done-user done-user__assignee">-->
+                                                                <!--<select class="done-task__field__input done-task__field__input_user" data-bind="value: newTask.assignee" name="assignee">-->
+	                                                                <!--<option value="" selected disabled data-bind="text: 'Responsible'"></option>-->
+	                                                                <!--<option value="1" data-bind="text: 'ResponsibleResponsible'"></option>-->
+	                                                                <!--<option value="2" data-bind="text: 'Response'"></option>-->
+	                                                                <!--&lt;!&ndash; ko foreach: users &ndash;&gt;-->
+	                                                                <!--<option data-bind="text: name, value: id"></option>-->
+	                                                                <!--&lt;!&ndash; /ko &ndash;&gt;-->
+                                                                <!--</select>-->
+                                                            <!--</span>-->
+
+					<!--</div>-->
+
+					<!--<div class="done-task__bottom">-->
+						<!--&lt;!&ndash; task &ndash;&gt;-->
+						<!--<div class="done-task__field done-task__field__task">-->
+	                                                        <!--<span class="done-task__field__annotation done-hide">-->
+	                                                                <!--TODO-->
+	                                                        <!--</span>-->
+							<!--<input class="done-task__field__input done-task__field__input_task" data-bind="value: newTask.task" type="text" name="task" placeholder='TODO'>-->
+						<!--</div>-->
+						<!--&lt;!&ndash; !task &ndash;&gt;-->
+
+
+						<!--<div class="done-task__field done-task__field_right">-->
+							<!--<button class="done-button">Create task</button>-->
+						<!--</div>-->
+					<!--</div>-->
+
+
+
+
+					<!--&lt;!&ndash; ticket &ndash;&gt;-->
+					<!--<div class="done-hide done-task__field done-task__field__ticket">-->
+                                                        <!--<span class="done-task__field__annotation">-->
+                                                                <!--Ticket-->
+                                                        <!--</span>-->
+
+
+						<!--<input data-bind="value: newTask.ticket" type="text" name="ticket">-->
+					<!--</div>-->
+					<!--&lt;!&ndash; !ticket &ndash;&gt;-->
+
+
+					<!--&lt;!&ndash; deadline &ndash;&gt;-->
+					<!--<div class="done-hide done-task__field done-task__field__deadline">-->
+                                                        <!--<span class="done-task__field__annotation">-->
+                                                            <!--Deadline-->
+                                                        <!--</span>-->
+
+						<!--<input data-bind="value: newTask.deadline, datepicker" type="text" name="deadline">-->
+					<!--</div>-->
+					<!--&lt;!&ndash; !deadline &ndash;&gt;-->
+
+
+					<!--&lt;!&ndash; Description &ndash;&gt;-->
+
+					<!--<div class="done-hide done-task__field done-task__field__description" style="display: none;">-->
+                                                    <!--<span class="done-task__field__annotation">-->
+                                                        <!--Description-->
+                                                    <!--</span>-->
+						<!--<textarea class="done-new__description" data-bind="value: newTask.description" type="text" name="description"></textarea>-->
+					<!--</div>-->
+
+					<!--&lt;!&ndash; !Description &ndash;&gt;-->
+
+
+				<!--</form>-->
+
+			<!--</div>-->
+
+			<!--<div class="done-fastTask">-->
+
+				<!--<h2 class="done-header__inside">-->
+					<!--Fast time tracking system-->
+				<!--</h2>-->
+
+
+
+				<!--<form data-bind="submit: createNewFastTask" class="done-task done-task_form js-form">-->
+
+
+					<!--<input type="hidden" data-bind="value: currentUser">-->
+
+					<!--<div class="done-task__field">-->
+                            <!--<span class="done-hide done-task__field__annotation">-->
+                                                        <!--What was done-->
+                                                <!--</span>-->
+						<!--<input data-bind="value: newFastTask.task" placeholder="What was done" type="text" name="task">-->
+					<!--</div>-->
+
+					<!--<div class="done-task__field">-->
+                            <!--<span class="done-hide done-task__field__annotation">-->
+                                                        <!--Ticket-->
+                                                <!--</span>-->
+						<!--<input placeholder="Ticket" data-bind="value: newFastTask.ticket" type="text" name="ticket">-->
+					<!--</div>-->
+
+					<!--<div class="done-task__field">-->
+                            <!--<span class="done-hide done-task__field__annotation">-->
+                                                        <!--Time-->
+                                                <!--</span>-->
+						<!--<input placeholder="Time" data-bind="value: newFastTask.time" type="text" name="time">-->
+					<!--</div>-->
+
+					<!--<div class="done-task__field done-task__field_right">-->
+						<!--<button class="done-button">Go</button>-->
+					<!--</div>-->
+				<!--</form>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<div id="js-popup__fast" class="js-popup js-popup__fast mfp-hide done-popup">
+
+		</div>
+
+		<nav class="done-navigation">
+
+			<div id="1" class="done-navigation__item" data-bind="click: changeState,
+                                                                 css: {'done-navigation__item_active': currentStateId() == 1}
+            ">
+				Todo
+				<div class="done-navigation__item__counter" data-bind="text: counters()[0]"></div>
+			</div>
+
+
+			<div id="3"  class="done-navigation__item" data-bind="click: changeState,
+                                                                 css: {'done-navigation__item_active': currentStateId() == 3}
+            ">
+				Testing
+				<div class="done-navigation__item__counter" data-bind="text: counters()[2]"></div>
+			</div>
+
+			<div id="4" class="done-navigation__item" data-bind="click: changeState,
+                                                                 css: {'done-navigation__item_active': currentStateId() == 4}
+            ">
+				Review
+				<div class="done-navigation__item__counter" data-bind="text: counters()[3]"></div>
+			</div>
+
+			<div id="5" class="done-navigation__item" data-bind="click: changeState,
+                                                                 css: {'done-navigation__item_active': currentStateId() == 5}
+            ">
+				Done
+				<div class="done-navigation__item__counter" data-bind="text: counters()[4]"></div>
+			</div>
+
+		</nav>
+
+		<nav class="done-navigation done-navigation__users">
+
+			<div class="done-navigation__item" data-bind="css: {'done-navigation__item_active': !filter.assignee() },
+                click: function(){
+
+                    console.log(filter.assignee());
+                    $root.filter.assignee('');
+
+                    $root.refresh();
+                }">
+				Все
+			</div>
+
+			<!-- ko foreach: users -->
+
+			<div class="done-navigation__item" data-bind="text: login, visible: permissions > 40, css: {'done-navigation__item_active': name == $root.filter.assignee()},
+                click: function(){
+
+                    console.log($root.filter.assignee() + ' ' + name);
+                    $root.filter.assignee(name);
+
+                    $root.refresh();
+                }">
+
+			</div>
+
+			<!-- /ko -->
+		</nav>
+
+		<div class="done-filters">
+
+			<div class="done-filters__item">
+				<!--<label>Тег</label>-->
+				<select data-bind="
+                            options: tags,
+                            optionsText: 'name',
+                            value: filter.tag,
+                            optionsValue: 'id',
+                            valueAllowUnset: true,
+                            optionsCaption: 'All projects',
+                            event: { change: refresh('full') }
+                            "></select>
+			</div>
+
+		</div>
+
+            <!-- /ko -->
+
+        <!-- /ko -->
+
+
+    </div>
+
+    <footer>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
