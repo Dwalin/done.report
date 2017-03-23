@@ -684,8 +684,6 @@ $(function() {
 
 });
 
-$(document).ready(function(){
-	$('.js-user-select').selectmenu();
-
-
-});
+//$(document).ready(function(){
+//	$('.js-user-select').selectmenu();
+//});

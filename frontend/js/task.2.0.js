@@ -5,6 +5,10 @@ var ko          = require('knockout');
 
 $(function() {
 
+	// -- Load function --
+
+	$(".js-load").removeClass("js-load");
+
     var tasks = {};
 
     var taskVM = function(data) {
