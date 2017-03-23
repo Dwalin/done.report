@@ -691,9 +691,3 @@ $(function() {
     ko.applyBindings(new tasksVM());
 
 });
-
-$(document).ready(function(){
-	$('.js-user-select').selectmenu();
-
-
-});
