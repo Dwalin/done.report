@@ -113,7 +113,7 @@
 		}
 	}
 	&__delete {
-		/*display: none;*/
+      display: none;
       width: 16px;
       height: 16px;
       position: absolute;
@@ -122,6 +122,12 @@
       border-radius: 8px;
       background-color: red;
 	}
+
+    &:hover {
+      .done-task__delete {
+        display: block;
+      }
+    }
 }
 
 @media (max-width: 1500px) {
