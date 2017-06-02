@@ -227,42 +227,41 @@
                     </span>
             <!-- /ko -->
 
-            <div class="done-task done-mainTask">
 
-		        <form data-bind="submit: createNewTask" class="done-task__form">
+			<form data-bind="submit: createNewTask" class="done-task__form done-task done-mainTask">
 
-					<h2 class="done-task__title">
-						<span class="done-task__name">New task</span>
-					</h2>
+				<h2 class="done-task__title">
+					<span class="done-task__name">New task</span>
+				</h2>
 
-					<!-- task -->
-					<div class="done-task__field__task">
-						<input class="done-task__field__input done-task__field__input_task" data-bind="value: newTask.task" type="text" name="task" placeholder='TODO'>
+				<!-- task -->
+				<div class="done-task__field__task">
+					<input class="done-task__field__input done-task__field__input_task" data-bind="value: newTask.task" type="text" name="task" placeholder='TODO'>
+				</div>
+				<!-- !task -->
+
+				<span class="done-user done-user__assignee done-task__field__users">
+					<select class="done-task__field__input done-task__field__input_user js-user-select" data-bind="value: newTask.assignee" name="assignee">
+						<option value="" selected disabled data-bind="text: 'Responsible'"></option>
+						<!-- ko foreach: users -->
+						<option data-bind="text: name, value: id"></option>
+						<!-- /ko -->
+					</select>
+				</span>
+
+
+				<div class="done-task__field done-task__field_createTask">
+
+					<div class="done-task__bottom">
+						<div class=" done-task__field_right">
+							<button class="done-button">Create task</button>
+						</div>
 					</div>
-					<!-- !task -->
 
-					<span class="done-user done-user__assignee done-task__field__users">
-						<select class="done-task__field__input done-task__field__input_user js-user-select" data-bind="value: newTask.assignee" name="assignee">
-							<option value="" selected disabled data-bind="text: 'Responsible'"></option>
-							<!-- ko foreach: users -->
-							<option data-bind="text: name, value: id"></option>
-							<!-- /ko -->
-						</select>
-					</span>
+				</div>
 
+			</form>
 
-					<div class="done-task__field done-task__field_createTask">
-
-				        <div class="done-task__bottom">
-					        <div class=" done-task__field_right">
-						        <button class="done-button">Create task</button>
-					        </div>
-				        </div>
-
-			        </div>
-
-		        </form>
-            </div>
 
 
 
