@@ -237,27 +237,21 @@
 
 					<!-- task -->
 					<div class="done-task__field__task">
-						<span class="done-task__field__annotation done-hide">
-								TODO
-						</span>
 						<input class="done-task__field__input done-task__field__input_task" data-bind="value: newTask.task" type="text" name="task" placeholder='TODO'>
 					</div>
 					<!-- !task -->
 
+					<span class="done-user done-user__assignee done-task__field__users">
+						<select class="done-task__field__input done-task__field__input_user js-user-select" data-bind="value: newTask.assignee" name="assignee">
+							<option value="" selected disabled data-bind="text: 'Responsible'"></option>
+							<!-- ko foreach: users -->
+							<option data-bind="text: name, value: id"></option>
+							<!-- /ko -->
+						</select>
+					</span>
+
 
 					<div class="done-task__field done-task__field_createTask">
-                        <span class="done-user done-user__creator done-hide">
-                            <span data-bind="" class="name">Responsible</span>
-                        </span>
-
-                        <span class="done-user done-user__assignee done-task__field__users">
-                            <select class="done-task__field__input done-task__field__input_user js-user-select" data-bind="value: newTask.assignee" name="assignee">
-                                <option value="" selected disabled data-bind="text: 'Responsible'"></option>
-                                <!-- ko foreach: users -->
-                                <option data-bind="text: name, value: id"></option>
-                                <!-- /ko -->
-                            </select>
-                        </span>
 
 				        <div class="done-task__bottom">
 					        <div class=" done-task__field_right">
@@ -266,46 +260,6 @@
 				        </div>
 
 			        </div>
-
-
-
-
-
-
-			        <!-- ticket -->
-			        <div class="done-hide done-task__field done-task__field__ticket">
-                                                        <span class="done-task__field__annotation">
-                                                                Ticket
-                                                        </span>
-
-
-				        <input data-bind="value: newTask.ticket" type="text" name="ticket">
-			        </div>
-			        <!-- !ticket -->
-
-
-			        <!-- deadline -->
-			        <div class="done-hide done-task__field done-task__field__deadline">
-                                                        <span class="done-task__field__annotation">
-                                                            Deadline
-                                                        </span>
-
-				        <input data-bind="value: newTask.deadline, datepicker" type="text" name="deadline">
-			        </div>
-			        <!-- !deadline -->
-
-
-			        <!-- Description -->
-
-			        <div class="done-hide done-task__field done-task__field__description" style="display: none;">
-                                                    <span class="done-task__field__annotation">
-                                                        Description
-                                                    </span>
-				        <textarea class="done-new__description" data-bind="value: newTask.description" type="text" name="description"></textarea>
-			        </div>
-
-			        <!-- !Description -->
-
 
 		        </form>
             </div>
