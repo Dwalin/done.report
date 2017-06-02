@@ -321,9 +321,6 @@
                          css: {'done-task__loading': loading, 'done-task_runtime': marker() == 'Runtime'}"
                         >
 
-
-
-
                     <!--<div class="done-task__modified" data-bind="text: 'Запись обновлена ' + new Date(modified()).toLocaleString();"></div>-->
 
                     <div class="done-task__delete" data-bind="click: function(){ $root.deleteTask(this) }"></div>
@@ -552,10 +549,6 @@
 
 							<div class="done-task__field _user">
 
-								<div class="done-task__creator">
-									<span data-bind="text: 'Task given by ' + users().creator" class="name"></span>
-								</div>
-
 								<div class="done-task__assignee">
 
 									<a data-bind="attr: {href: '#js-popup__assignee_' + id}, popup" class="done-button_inline js-popup__open done-link done-link">
@@ -576,7 +569,9 @@
 
 								</div>
 
-
+								<div class="done-task__creator">
+									<span data-bind="text: 'Task given by ' + users().creator" class="name"></span>
+								</div>
 
                                 <span class="done-user done-user__tester" data-bind="visible: users().tester">
                                     <span class="done-user__additional">Tester:&nbsp;</span>
