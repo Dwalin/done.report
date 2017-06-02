@@ -556,6 +556,10 @@
 										<span data-bind="visible: !users().assignee" class="name">No responsible</span>
 									</a>
 
+									<div class="done-task__creator">
+										<span data-bind="text: '(task given by ' + users().creator + ')'" class="name"></span>
+									</div>
+
 									<div data-bind="attr: {id: 'js-popup__assignee_' + id}" class="js-popup mfp-hide done-popup done-deadline__popup">
 										<form data-bind="submit: function(){ updateTask('assignee') }">
 
@@ -569,9 +573,7 @@
 
 								</div>
 
-								<div class="done-task__creator">
-									<span data-bind="text: 'Task given by ' + users().creator" class="name"></span>
-								</div>
+
 
                                 <span class="done-user done-user__tester" data-bind="visible: users().tester">
                                     <span class="done-user__additional">Tester:&nbsp;</span>
